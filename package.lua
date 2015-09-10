@@ -3,7 +3,7 @@
 -- Contains package routines.
 
 	local p = premake
-	p.package = p.api.container("newpackage", p.global)
+	p.package = p.api.container("newpackage", p.global, { "config" })
 
 	local packaging = p.modules.prepack
 	packaging.package = {}
