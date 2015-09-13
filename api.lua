@@ -1,9 +1,9 @@
 -- Package management Premake module
 -- Copyright (c) 2015 João Matos and the Premake project
 
-local api = p.api
+local api = premake.api
 
-local scope = "newpackage"
+local scope = "workspace"
 
 api.register {
     name = "url",
