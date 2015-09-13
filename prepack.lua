@@ -4,6 +4,12 @@
     local p = premake
     p.modules.prepack = {}
 
+    include("util.lua")
+    include("package.lua")
+    include("packageman.lua")
+    include("cache.lua")
+    include("context.lua")
+
     include("database.lua")
     include("commands.lua")
     include("api.lua")
