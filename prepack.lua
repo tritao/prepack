@@ -5,8 +5,7 @@
     p.modules.prepack = {}
 
     include("database.lua")
-    include("package.lua")
-    include ("commands.lua")
+    include("commands.lua")
     include("api.lua")
 
     local pkg = p.modules.prepack
