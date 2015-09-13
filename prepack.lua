@@ -15,35 +15,35 @@
     pkg.repository = pkgdb.dev
     pkg.repositoryindex = pkg.repository .. ".index.lua"
 
+    local function main()
+        local command = _ARGS[1]
+        if command == nil then
+            pkg.help()
+            return
+        end
+
+        local action = pkg.commands[string.lower(command)]
+        if action == nil then
+            print("Unknown command '" .. command .. "'.\n")
+            pkg.help()
+            return
+        end
+
+        local exec = action.exec
+        if exec == nil then
+            print("Execute function for command '" .. command .. "'' was not found.")
+            return
+        end
+
+        local args = _ARGS
+        exec(args)
+    end
+
     newaction {
         trigger = "prepack",
         description = "Prepack package manager",
-        execute = function()
-            local command = _ARGS[1]
-            if command == nil then
-                pkg.help()
-                return
-            end
-
-            local action = pkg.commands[string.lower(command)]
-            if action == nil then
-                print("Unknown command '" .. command .. "'.\n")
-                pkg.help()
-                return
-            end
-
-            local exec = action.exec
-            if exec == nil then
-                print("Execute function for command '" .. command .. "'' was not found.")
-                return
-            end
-
-            local args = _ARGS
-            exec(args)
-        end,
-        onSolution = function(sln)
-            return true
-        end,
+        execute = main,
+        onSolution = function(sln) return true end,
         quiet = true
     }
 
